@@ -27,7 +27,10 @@ export class HomepageComponent implements OnInit {
   displayCalculations1: any;
   displayCalculations2: any;
   displayCalculations3: any;
-  myInputField: any;
+
+  loading: string = '';
+
+
 
 
   constructor(private currenciesService: CurrenciesService, private formBuilder: FormBuilder, private conversionRatesService: ConversionRatesService) { }
@@ -57,6 +60,8 @@ export class HomepageComponent implements OnInit {
   }
 
   convertAmount() {
+    this.loading = 'Fetching data...';
+
     let selectedFromCurrency = this.conversionForm.get('selectFromCurrency')?.value;
     let selectedToCurrency = this.conversionForm.get('selectToCurrency')?.value;
     let convertFromInput = this.conversionForm.get('convertFromAmount')?.value;
@@ -71,6 +76,10 @@ export class HomepageComponent implements OnInit {
     this.displayCalculations3 = `${selectedToCurrency} ${convertToOutput.toFixed(4)}`;
 
     this.convertToOutput = convertToOutput.toFixed(2);
+
+    this.loading = '';
+
+
   }
 
 }

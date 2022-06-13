@@ -2,13 +2,16 @@
     <h1 class="ui header big">Simple Currency Converter</h1>
 
     <form class="ui form" [formGroup]="conversionForm" novalidate (ngSubmit)="convertAmount();">
-        <span class="ui large text text-error"
+        <span class="text-error"
             *ngIf="conversionForm.dirty && (conversionForm.controls['selectFromCurrency']?.value == conversionForm.controls['selectToCurrency']?.value)">Conversion
             Currency to cannot be the same as Initial Currency</span>
+
+        <span class="text-error" *ngIf="conversionForm.dirty && conversionForm.controls['convertFromAmount']?.invalid">
+            Amount must be a number </span>
         <div class="ui two wide fields segment">
             <div class="field">
                 <ng-template let-option #optionTemplate>
-                    <i [class]="option?.icon || '₦'"></i>{{ option }}
+                    <i [class]="option"></i>{{ option }}
                 </ng-template>
 
                 <fui-select class="selection" id="selectFromCurr" [options]="currencies"
@@ -20,29 +23,12 @@
                 </fui-select>
             </div>
             <div class="input-field fromAmountfield field">
-
                 <input type="number" formControlName="convertFromAmount" id="from-amount"
                     placeholder="Amount to Convert From" />
             </div>
         </div>
 
         <!-- <i class="exchange alternate big icon" (click)="swapCurrency()"></i> -->
-
-
-        <div class="message-block" *ngIf="displayCalculations3">
-            <p>The Conversion ratio is determined as follows:
-            </p>
-            <br>
-            <p>Conversion Currency / Initial Currency</p>
-            <p class="indent-block">{{displayCalculations1}}</p>
-            <br>
-            <p>Final Converted Value = </p>
-            <p> Initial Amount (Initial Currency) * Conversion Ratio (Conversion Currency/
-                Initial Currency) = </p>
-            <p class="indent-block">{{displayCalculations2}}</p>
-            <p class="indent-block">{{displayCalculations3}}</p>
-
-        </div>
 
 
         <div class="convert-icon">
@@ -53,6 +39,8 @@
             </button>
 
         </div>
+
+        <div>{{loading}}</div>
 
         <div class="ui two wide fields segment">
             <div class="field">
@@ -77,4 +65,18 @@
 
 
     </form>
+
+    <div class="message-block" *ngIf="displayCalculations3">
+        <p>The Conversion ratio is determined as follows:
+        </p>
+        <br>
+        <p>Conversion Currency / Initial Currency</p>
+        <p class="indent-block">{{displayCalculations1}}</p>
+        <br>
+        <p>Final Converted Value = Initial Amount (Initial Currency) * Conversion Ratio (Conversion Currency/
+            Initial Currency) = </p>
+        <p class="indent-block">{{displayCalculations2}}</p>
+        <p class="indent-block">{{displayCalculations3}}</p>
+
+    </div>
 </div>

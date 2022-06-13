@@ -6,12 +6,12 @@ $light-text: #ffffff;
 $field-border-light: #dec7e6;
 
 .container.wrap {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: Avenir;
+    margin-top: 4rem;
     // background-color: $dark-bg;
 
     & .ui.header {
@@ -73,6 +73,7 @@ input.search[type="text"] {
     padding-top: 2rem;
     font-size: 1.4rem;
     font-weight: 100;
+    width: 60vw;
 
     & .indent-block {
         padding-left: 2rem;
