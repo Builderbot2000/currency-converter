@@ -1,0 +1,80 @@
+<div class="ui container wrap">
+    <h1 class="ui header big">Simple Currency Converter</h1>
+
+    <form class="ui form" [formGroup]="conversionForm" novalidate (ngSubmit)="convertAmount();">
+        <span class="ui large text text-error"
+            *ngIf="conversionForm.dirty && (conversionForm.controls['selectFromCurrency']?.value == conversionForm.controls['selectToCurrency']?.value)">Conversion
+            Currency to cannot be the same as Initial Currency</span>
+        <div class="ui two wide fields segment">
+            <div class="field">
+                <ng-template let-option #optionTemplate>
+                    <i [class]="option?.icon || '₦'"></i>{{ option }}
+                </ng-template>
+
+                <fui-select class="selection" id="selectFromCurr" [options]="currencies"
+                    formControlName="selectFromCurrency" [optionTemplate]="optionTemplate" [isSearchable]="true"
+                    placeholder="Select Currency" #fromCurrency>
+                    <fui-select-option class="dropdown-select" *ngFor="let currency of fromCurrency.filteredOptions"
+                        [value]="currency">
+                    </fui-select-option>
+                </fui-select>
+            </div>
+            <div class="input-field fromAmountfield field">
+
+                <input type="number" formControlName="convertFromAmount" id="from-amount"
+                    placeholder="Amount to Convert From" />
+            </div>
+        </div>
+
+        <!-- <i class="exchange alternate big icon" (click)="swapCurrency()"></i> -->
+
+
+        <div class="message-block" *ngIf="displayCalculations3">
+            <p>The Conversion ratio is determined as follows:
+            </p>
+            <br>
+            <p>Conversion Currency / Initial Currency</p>
+            <p class="indent-block">{{displayCalculations1}}</p>
+            <br>
+            <p>Final Converted Value = </p>
+            <p> Initial Amount (Initial Currency) * Conversion Ratio (Conversion Currency/
+                Initial Currency) = </p>
+            <p class="indent-block">{{displayCalculations2}}</p>
+            <p class="indent-block">{{displayCalculations3}}</p>
+
+        </div>
+
+
+        <div class="convert-icon">
+            <button class="ui purple huge text button"
+                [disabled]="conversionForm.invalid || (conversionForm.controls['selectFromCurrency']?.value == conversionForm.controls['selectToCurrency']?.value)">
+                <i class="exchange alternate big icon"></i>
+                Convert
+            </button>
+
+        </div>
+
+        <div class="ui two wide fields segment">
+            <div class="field">
+                <ng-template let-option #optionTemplate2>
+                    <i [class]="option?.icon"></i>{{ option }}
+                </ng-template>
+
+                <fui-select class="selection" id="selectToCurr" [options]="currencies"
+                    formControlName="selectToCurrency" [optionTemplate]="optionTemplate2" [isSearchable]="true"
+                    placeholder="Select Currency" #toCurrency>
+                    <fui-select-option class="dropdown-select" *ngFor="let currency of toCurrency.filteredOptions"
+                        [value]="currency">
+                    </fui-select-option>
+                </fui-select>
+            </div>
+            <div class="input-field fromAmountfield field">
+                <input type="number" [value]="convertToOutput" id="from-amount" placeholder="Amount to Be Converted To"
+                    #convertOutput />
+            </div>
+
+        </div>
+
+
+    </form>
+</div>

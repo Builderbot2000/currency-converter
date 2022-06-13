@@ -1,0 +1,137 @@
+$dark-bg: darken($color: #ca59ef, $amount: 58%);
+$dark-text: #482155;
+
+$light-bg: lighten($color: #744883, $amount: 58%);
+$light-text: #ffffff;
+$field-border-light: #dec7e6;
+
+.container.wrap {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Avenir;
+    // background-color: $dark-bg;
+
+    & .ui.header {
+        font-size: 2.4rem;
+        margin-bottom: 4.8rem;
+        color: $dark-text;
+        text-align: center;
+    }
+
+}
+
+
+.ui.form {
+    width: 60vw;
+}
+
+.text-error {
+    line-height: 2rem;
+    margin-top: 10px;
+    padding-bottom: 2rem;
+    display: block;
+    color: lighten(#ff0000, 25%);
+
+}
+
+.ui.segment {
+    margin: 0;
+    padding: 3.6rem 2.4rem;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: $light-bg;
+}
+
+fui-select,
+input[type="number"] {
+    font-size: 1.4rem !important;
+    text-align: center !important;
+    transition: font-size 3s ease-in-out;
+
+}
+
+
+fui-select {
+    background-color: #f4edf7 !important;
+    color: $dark-bg;
+    transition: color 2s ease-in-out;
+}
+
+input.search[type="text"] {
+    padding: 2rem !important;
+
+}
+
+.input-field input {
+    border: 2px solid $field-border-light !important;
+}
+
+.message-block {
+    padding-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 100;
+
+    & .indent-block {
+        padding-left: 2rem;
+        font-weight: 800;
+    }
+}
+
+.convert-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & .ui.button {
+        // width: 25vw;
+        padding: 1rem 2rem;
+        margin: 2.4rem auto;
+        border: 2px solid !important;
+        filter: grayscale(0.5);
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        border-radius: 0.8rem;
+
+
+        &:hover {
+            animation: fade 3s ease-out 2s infinite forwards;
+        }
+
+        @keyframes fade {
+            from {
+                filter: grayscale(0.5);
+                ;
+            }
+
+            to {
+                filter: grayscale(0.2);
+            }
+        }
+    }
+
+    // & .big.icon {
+    //     margin: 2.4rem auto;
+    //     padding: 0;
+    //     padding: 2rem;
+    //     background-color: #dec7e6;
+    //     animation: fade 3s ease-out 2s infinite forwards;
+
+    //     &:hover {
+
+    //         border-radius: 0.4rem;
+    //     }
+    // }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    fui-select,
+    input[type="text"] {
+        font-size: 1.2rem !important;
+    }
+}
