@@ -46,10 +46,10 @@ $field-border-light: #dec7e6;
 }
 
 fui-select,
-input[type="number"] {
+input[type="text"] {
     font-size: 1.4rem !important;
     text-align: center !important;
-    transition: font-size 3s ease-in-out;
+    transition: all 3s ease-in-out;
 
 }
 
@@ -69,8 +69,14 @@ input.search[type="text"] {
     border: 2px solid $field-border-light !important;
 }
 
+
+.input-field input:disabled {
+    opacity: 100 !important;
+}
+
+
 .message-block {
-    padding-top: 2rem;
+    padding: 2rem 0;
     font-size: 1.4rem;
     font-weight: 100;
     width: 60vw;
@@ -129,10 +135,11 @@ input.search[type="text"] {
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
 
     fui-select,
     input[type="text"] {
         font-size: 1.2rem !important;
+
     }
 }

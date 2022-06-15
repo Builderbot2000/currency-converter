@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConversionRates } from '../common/models/conversion-rates';
 import { ConversionRatesService } from '../common/services/conversion-rates.service';
@@ -24,9 +24,7 @@ export class HomepageComponent implements OnInit {
 
   currencies: string[] = [];
 
-  displayCalculations1: any;
-  displayCalculations2: any;
-  displayCalculations3: any;
+  displayCalculations: string = '';
 
   loading: string = '';
 
@@ -46,7 +44,7 @@ export class HomepageComponent implements OnInit {
       convertToAmount: [0.00.toFixed(2)],
     });
     this.currencies = this.currenciesService.currencies;
-    this.fetchCurrencyRates(); // uncomment this line to fetch data rates
+    // this.fetchCurrencyRates(); // uncomment this line to fetch data rates
 
   }
 
@@ -67,13 +65,11 @@ export class HomepageComponent implements OnInit {
     let convertFromInput = this.conversionForm.get('convertFromAmount')?.value;
     let convertToOutput = this.conversionForm.get('convertToAmount')?.value;
 
-    let conversionRatio = this.currencyRates[selectedToCurrency].toFixed(4) / this.currencyRates[selectedFromCurrency].toFixed(4)
+    let conversionRatio = this.currencyRates[selectedToCurrency].toFixed(4) / this.currencyRates[selectedFromCurrency].toFixed(4);
     convertToOutput = convertFromInput * conversionRatio;
-    this.displayCalculations1 = `${this.currencyRates[selectedToCurrency].toFixed(4)} / ${this.currencyRates[selectedFromCurrency].toFixed(4)}  
-                                = ${conversionRatio.toFixed(4)} (${selectedToCurrency}/${selectedFromCurrency})`;
 
-    this.displayCalculations2 = `${selectedFromCurrency} ${convertFromInput} * ${conversionRatio} (${selectedToCurrency}/${selectedFromCurrency})  =`;
-    this.displayCalculations3 = `${selectedToCurrency} ${convertToOutput.toFixed(4)}`;
+    this.displayCalculations = `1 ${selectedFromCurrency} = ${(this.currencyRates[selectedToCurrency] / this.currencyRates[selectedFromCurrency]).toFixed(4)
+      } ${selectedToCurrency} `;
 
     this.convertToOutput = convertToOutput.toFixed(2);
 

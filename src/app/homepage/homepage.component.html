@@ -23,13 +23,16 @@
                 </fui-select>
             </div>
             <div class="input-field fromAmountfield field">
-                <input type="number" formControlName="convertFromAmount" id="from-amount"
+                <input type="text" formControlName="convertFromAmount" id="from-amount"
                     placeholder="Amount to Convert From" />
             </div>
         </div>
 
-        <!-- <i class="exchange alternate big icon" (click)="swapCurrency()"></i> -->
+        <div class="message-block" *ngIf="convertOutput">
+            <p class="indent-block">{{displayCalculations}}</p>
+        </div>
 
+        <!-- <i class="exchange alternate big icon" (click)="swapCurrency()"></i> -->
 
         <div class="convert-icon">
             <button class="ui purple huge text button"
@@ -40,7 +43,7 @@
 
         </div>
 
-        <div>{{loading}}</div>
+        <div>{{loading}} <br></div>
 
         <div class="ui two wide fields segment">
             <div class="field">
@@ -57,8 +60,8 @@
                 </fui-select>
             </div>
             <div class="input-field fromAmountfield field">
-                <input type="number" [value]="convertToOutput" id="from-amount" placeholder="Amount to Be Converted To"
-                    #convertOutput />
+                <input type="text" [value]="convertToOutput" id="from-amount" placeholder="Amount to Be Converted To"
+                    disabled #convertOutput />
             </div>
 
         </div>
@@ -66,17 +69,4 @@
 
     </form>
 
-    <div class="message-block" *ngIf="displayCalculations3">
-        <p>The Conversion ratio is determined as follows:
-        </p>
-        <br>
-        <p>Conversion Currency / Initial Currency</p>
-        <p class="indent-block">{{displayCalculations1}}</p>
-        <br>
-        <p>Final Converted Value = Initial Amount (Initial Currency) * Conversion Ratio (Conversion Currency/
-            Initial Currency) = </p>
-        <p class="indent-block">{{displayCalculations2}}</p>
-        <p class="indent-block">{{displayCalculations3}}</p>
-
-    </div>
 </div>

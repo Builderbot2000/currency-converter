@@ -8,7 +8,7 @@ const BASE_URL = 'https://api.apilayer.com/fixer/';
 })
 export class ConversionRatesService {
 
-  API_KEY = '';
+  API_KEY = 'C6E6aP3VMqb1KlNjyOLuQVnU7mJL3jbo';
   baseCurrency = 'USD';
 
   constructor(private http: HttpClient) { }
